@@ -14,7 +14,7 @@ type ContentType = (typeof ContentType)[keyof typeof ContentType];
 export function CreateContentModal({ open, onClose }) {
   const titleRef = useRef<HTMLInputElement>(null);
   const linkRef = useRef<HTMLInputElement>(null);
-  const [type, setType] = useState(ContentType.Youtube);
+  const [type, setType] = useState<ContentType>(ContentType.Youtube);
 
   async function addContent() {
     const title = titleRef.current?.value;
