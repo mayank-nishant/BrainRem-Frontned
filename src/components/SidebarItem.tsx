@@ -1,10 +1,28 @@
 import type { ReactElement } from "react";
 
-export function SidebarItem({ text, icon }: { text: string; icon: ReactElement }) {
+interface SidebarItemProps {
+  text: string;
+  icon: ReactElement;
+  active?: boolean;
+  onClick?: () => void;
+}
+
+export function SidebarItem({ text, icon, active = false, onClick }: SidebarItemProps) {
   return (
-    <div className="flex text-gray-700 py-2 cursor-pointer hover:bg-gray-200 rounded max-w-48 pl-4 transition-all duration-150">
-      <div className="pr-2">{icon}</div>
-      <div>{text}</div>
+    <div 
+      onClick={onClick}
+      className={`flex items-center space-x-3 px-4 py-3 rounded-lg cursor-pointer transition-all duration-200 group ${
+        active 
+          ? "bg-gradient-to-r from-purple-100 to-blue-100 text-purple-700 border border-purple-200" 
+          : "text-gray-700 hover:bg-gray-100 hover:text-gray-900"
+      }`}
+    >
+      <div className={`transition-colors duration-200 ${
+        active ? "text-purple-600" : "text-gray-500 group-hover:text-gray-700"
+      }`}>
+        {icon}
+      </div>
+      <span className="font-medium">{text}</span>
     </div>
   );
 }
